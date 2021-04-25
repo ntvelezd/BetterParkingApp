@@ -2,23 +2,32 @@ import React from "react"
 import { Button, TextField, InputLabel, Select, MenuItem,FormControl } from '@material-ui/core';
 import "./register-form.scss"
 import {Link} from "gatsby"
+import Axios from "axios"
+
+
 
 
 
 const RegisterForm = () =>{
     function submitForm(e){
-        e.preventDefault();  
-        console.log("Usuario Registrado");    
+        e.preventDefault();
+        Axios.post("http://localhost:3000/users",{ "User_ID": "29", "Name": "Juanse", "LastName": "Diaz","Email": "juanse@gamil.com"}, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+          })
+        .then(response=> {console.log(response)})
+        .catch(e=>{console.log(e)});   
     }
      
     return(
     <div className="form-container"> 
        <Link to="/"><Button color= "secondary" variant= "contained">Volver a Inicio</Button></Link> 
-      <form onSubmit={ submitForm }>
-          <TextField id="outlined-basic" label="Name" variant="outlined" />
-          <TextField id="outlined-basic" label="Last Name" variant="outlined" />
-          <TextField id="outlined-basic" label="ID" variant="outlined" />
-          <TextField id="outlined-basic" label="Email" variant="outlined" />
+      <form onSubmit={ submitForm}>
+          <TextField id="outlined-basic" label="Name" variant="outlined" name="Name" />
+          <TextField id="outlined-basic" label="Last Name" variant="outlined" name="LastName" />
+          <TextField id="outlined-basic" label="ID" variant="outlined" name="User_ID"/>
+          <TextField id="outlined-basic" label="Email" variant="outlined" name="Email"/>
           <FormControl variant="outlined">
             <InputLabel id="demo-simple-select-outlined-label">Parking</InputLabel>
                  <Select
