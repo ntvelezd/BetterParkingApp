@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Button, TextField, InputLabel, Select, MenuItem,FormControl } from '@material-ui/core';
 import "./register-form.scss"
 import {Link} from "gatsby"
@@ -9,16 +9,30 @@ import Axios from "axios"
 
 
 const RegisterForm = () =>{
+  //const [lastSent, setLastSent] = useState({ "User_ID": "29", "Name": "Juanse", "LastName": "Diaz","Email": "juanse@gmail.com"});
     function submitForm(e){
         e.preventDefault();
-        Axios.post("http://localhost:3000/users",{ "User_ID": "29", "Name": "Juanse", "LastName": "Diaz","Email": "juanse@gamil.com"}, {
+        /*Axios.post("http://localhost:3000/users",{ "User_ID": "29", "Name": "Juanse", "LastName": "Diaz","Email": "juanse@gamil.com"}, {
             headers: {
             'Content-Type': 'application/json'
             }
           })
         .then(response=> {console.log(response)})
-        .catch(e=>{console.log(e)});   
-    }
+        .catch(e=>{console.log(e)}); */
+
+          fetch("http://localhost:3000/users",{
+             method:"POST",
+             mode: "cors",
+             body: JSON.stringify({"User_ID": "79", "Name": "Juanse", "LastName": "Diaz","Email": "juanse@gmail.com"}),
+             headers:{
+              'Content-Type': 'application/json',
+              'Accept': "*/*",
+              //'Access-Control-Allow-Origin': "*"
+              }
+            }).then(res => console.log("Mensaje correcto: ", res))
+            .catch(error => console.error(error));
+          
+     }
      
     return(
     <div className="form-container"> 
