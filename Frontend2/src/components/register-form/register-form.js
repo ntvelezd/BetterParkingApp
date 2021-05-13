@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Button, TextField, InputLabel, Select, MenuItem,FormControl } from '@material-ui/core';
 import "./register-form.scss"
 import {Link} from "gatsby"
@@ -9,42 +9,44 @@ import Axios from "axios"
 
 
 const RegisterForm = () =>{
-  //const [lastSent, setLastSent] = useState({ "User_ID": "29", "Name": "Juanse", "LastName": "Diaz","Email": "juanse@gmail.com"});
+
+
+  const name = useRef(null);
+  const lastname= useRef(null);
+  const email= useRef(null);
+  const id= useRef(null);
+
+
     function submitForm(e){
         e.preventDefault();
-        /*Axios.post("http://localhost:3000/users",{ "User_ID": "29", "Name": "Juanse", "LastName": "Diaz","Email": "juanse@gamil.com"}, {
-            headers: {
-            'Content-Type': 'application/json'
+        
+        fetch("http://localhost:3000/users",{
+            method:"POST",
+            mode: "cors",
+            body: JSON.stringify({"User_ID": id.current.value, "Name": name.current.value, "LastName": lastname.current.value,"Email": email.current.value}),
+            headers:{
+            'Content-Type': 'application/json',
+            'Accept': "*/*",
             }
-          })
-        .then(response=> {console.log(response)})
-        .catch(e=>{console.log(e)}); */
-
-          fetch("http://localhost:3000/users",{
-             method:"POST",
-             mode: "cors",
-             body: JSON.stringify({"User_ID": "79", "Name": "Juanse", "LastName": "Diaz","Email": "juanse@gmail.com"}),
-             headers:{
-              'Content-Type': 'application/json',
-              'Accept': "*/*",
-              //'Access-Control-Allow-Origin': "*"
-              }
-            }).then(res => console.log("Mensaje correcto: ", res))
-            .catch(error => console.error(error));
-          
+          }).then(res => console.log("Mensaje correcto: ", res))
+          .catch(error => console.error(error)); 
+        
      }
+
+        
      
     return(
     <div className="form-container"> 
        <Link to="/"><Button color= "secondary" variant= "contained">Volver a Inicio</Button></Link> 
       <form onSubmit={ submitForm}>
-          <TextField id="outlined-basic" label="Name" variant="outlined" name="Name" />
-          <TextField id="outlined-basic" label="Last Name" variant="outlined" name="LastName" />
-          <TextField id="outlined-basic" label="ID" variant="outlined" name="User_ID"/>
-          <TextField id="outlined-basic" label="Email" variant="outlined" name="Email"/>
+          <TextField id="outlined-basic" label="Name" variant="outlined" name="Name" inputRef={name} />
+          <TextField id="outlined-basic" label="Last Name" variant="outlined" name="LastName" inputRef= {lastname} />
+          <TextField id="outlined-basic" label="ID" variant="outlined" name="User_ID" inputRef={id}/>
+          <TextField id="outlined-basic" label="Email" variant="outlined" name="Email" inputRef={email}/>
           <FormControl variant="outlined">
             <InputLabel id="demo-simple-select-outlined-label">Parking</InputLabel>
                  <Select
+                    defaultValue= ""
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
                     label="Parking"
