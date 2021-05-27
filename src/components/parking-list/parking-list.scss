@@ -1,0 +1,46 @@
+@import "sass-google-fonts/src/GoogleFonts.scss";
+
+@include google-font("Lato");
+
+*, *::before, *::after{
+    box-sizing: border-box;    
+}
+
+body{
+    background-color: #78e3fd;
+    font-family: "Lato", sans-serif;
+}
+
+.parking-header{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.parking-elem{
+    display:grid;
+    grid-template-rows: 2rem 4rem;
+    grid-template-columns: repeat(2,50%);
+    align-items: center;
+    font-size: 1.5rem;
+    margin: 0.8rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: white;       
+    box-shadow: 0px 1px 15px -5px #000000;
+    &__name{
+        color: darkgrey;
+    }
+    &__location{
+        justify-self: right;
+    }
+    &__plate{
+        font-size: 2.3rem;
+        font-weight: 700;
+        //margin: 0.5rem 0;
+        
+    }
+    &__time{
+        justify-self: right;
+    }
+}
