@@ -14,7 +14,6 @@ body{
 .parking-header{
     display:flex;
     flex-direction: row;
-    justify-content: flex-end;
 }
 
 .parking-elem{
@@ -43,4 +42,17 @@ body{
     &__time{
         justify-self: right;
     }
+    &__button{
+        grid-column: 1/3;
+        place-self: center;
+        width: 100%;
+        padding: 0.5rem 20%;
+    }
+    &__cost{
+        grid-column: 1/3;
+        place-self: center;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
 }

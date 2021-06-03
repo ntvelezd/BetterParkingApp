@@ -1,27 +1,23 @@
 import React from "react"
 import ButtonGroup from "../components/button-group/button-group"
+import IndexHeader from "../components/index-header/index-header"
+import PicoPlaca from "../components/pico-placa/pico-placa"
+import "normalize.css"
 
 const pageStyles = {
   color: "#232129",
-  paddingTop: "20px",
   paddingBottom: "600px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-   
+  fontFamily: "Lato,sans-serif",
+     
 }
-
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 0,
-  width:"100%",
-  align: "center",
-  }
 
 // markup
 const IndexPage = () => {
   return (   
    < main style={pageStyles}>
-      <h1 style={headingStyles}>Better Parking</h1>
-   <ButtonGroup/>
+    <IndexHeader/>
+    <ButtonGroup/>
+    <PicoPlaca/>
    </main>
   )
 }

@@ -1,0 +1,26 @@
+
+
+.index-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    margin: 0;
+    margin-bottom: 1rem;
+    padding: 1rem 10rem;
+    box-shadow: 0px 5px 15px 1px rgba(0,0,0,0.5);
+    background-color: #2A2A72;
+    width: 100%;
+
+    &__title {  
+        font-weight: 700;
+        font-size: 2.5rem;
+        color: white;
+    }
+    &__logo-container {
+        width: 15rem;    
+    }
+    &__logo{
+        width: 100%;    
+    }
+
+}
